@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Life Work Flow · Tico Diedrich</title>
+  <meta name="description" content="On paper, everything is fine. Inside, you're on autopilot. Life Work Flow helps successful professionals get off autopilot and bring work and life into one flow.">
+  <style>
+    :root {
+      --bg: #0d1b1e;
+      --bg2: #12252a;
+      --card: #163038;
+      --ink: #eef4f2;
+      --muted: #a3b8b4;
+      --accent: #7fe0c8;
+      --warm: #f2b866;
+      --line: #24434b;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+    header.top { border-bottom: 1px solid var(--line); }
+    header.top .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    .brand { font-weight: 700; letter-spacing: .12em; font-size: 14px; }
+    .brand span { color: var(--accent); }
+    section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+    .eyebrow { font-family: var(--mono); color: var(--accent); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; }
+    h1 { font-size: clamp(40px, 7vw, 64px); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 20px; }
+    h2 { font-size: clamp(28px, 4.5vw, 40px); line-height: 1.15; margin: 0 0 20px; letter-spacing: -.01em; }
+    .lead { font-size: 22px; color: var(--muted); margin: 0 0 32px; max-width: 680px; }
+    p { margin: 0 0 16px; }
+    .muted { color: var(--muted); }
+    .small { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .btns { display: grid; gap: 12px; max-width: 520px; margin: 0 0 12px; }
+    .btn { display: block; text-align: center; padding: 16px 20px; border-radius: 10px; font-weight: 600; text-decoration: none; }
+    .btn.primary { background: var(--accent); color: #08201b; }
+    .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+    .btn:hover { filter: brightness(1.08); }
+    .for { margin-top: 28px; max-width: 640px; }
+    .chart { margin-top: 48px; background: var(--bg2); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+    .chart svg { width: 100%; height: auto; display: block; }
+    .grid3 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .num { font-family: var(--mono); color: var(--accent); font-size: 14px; display: block; margin-bottom: 8px; }
+    .quote { font-size: 26px; line-height: 1.35; border-left: 3px solid var(--warm); padding-left: 20px; margin: 28px 0; }
+    .pillars { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 28px; }
+    .check { margin-top: 28px; }
+    .row { display: grid; grid-template-columns: 1fr 52px; gap: 6px 14px; align-items: center; margin-bottom: 14px; }
+    .row label { font-size: 16px; }
+    .row output { font-family: var(--mono); color: var(--accent); text-align: right; }
+    .row input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
+    .result { margin-top: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .score { font-size: 48px; font-weight: 700; color: var(--accent); line-height: 1; }
+    .shift { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px 16px; align-items: center; margin-top: 24px; max-width: 560px; }
+    .shift .from { color: var(--muted); text-align: right; }
+    .shift .arrow { color: var(--warm); font-family: var(--mono); }
+    .shift .to { font-weight: 600; }
+    .steps { counter-reset: s; display: grid; gap: 14px; margin-top: 24px; }
+    .step { display: grid; grid-template-columns: 44px 1fr; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+    .step b { display: block; }
+    .step .n { font-family: var(--mono); color: var(--accent); font-size: 22px; }
+    details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin: 12px 0 0; color: var(--muted); }
+    .final { text-align: left; }
+    footer { padding: 40px 0 64px; color: var(--muted); font-size: 14px; }
+    footer h3 { color: var(--ink); font-size: 14px; margin: 0 0 6px; }
+    .floating { position: fixed; right: 16px; bottom: 16px; background: var(--accent); color: #08201b; padding: 12px 18px; border-radius: 999px; font-weight: 600; text-decoration: none; box-shadow: 0 6px 24px rgba(0,0,0,.35); font-size: 15px; }
+    @media (max-width: 520px) { body { font-size: 17px; } .quote { font-size: 22px; } .floating { left: 16px; text-align: center; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">LIFE <span>WORK</span> FLOW</div>
+      <a href="#call" class="small">Get in touch →</a>
+    </div>
+  </header>
+
+  <!-- 1. Hero -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Life Work Flow</p>
+      <h1>On paper, everything is fine.<br>Inside, you're on autopilot.</h1>
+      <p class="lead">You don't need more balance. You need your work and your life to flow in the same direction again.</p>
+      <div class="btns">
+        <a class="btn primary" href="#call">Get in touch</a>
+        <a class="btn ghost" href="#check">Take the 2-minute Flow Check</a>
+      </div>
+      <p class="small">Six questions, two minutes, nothing is sent anywhere. You see your result right away.</p>
+      <p class="for muted">For professionals in tech, consulting, sales and corporate, roughly early 30s to mid-40s, who are successful on paper and running on empty: functioning, but not really living.</p>
+
+      <div class="chart" aria-label="Energy over a year: a vacation recharges you, then you crash back to the same low.">
+        <svg viewBox="0 0 800 260" role="img">
+          <line x1="40" y1="60" x2="780" y2="60" stroke="#24434b" stroke-dasharray="4 6"/>
+          <text x="780" y="50" fill="#a3b8b4" font-family="ui-monospace, Menlo, monospace" font-size="12" text-anchor="end">WHERE YOU WANT TO BE: IN FLOW</text>
+          <text x="40" y="24" fill="#a3b8b4" font-family="ui-monospace, Menlo, monospace" font-size="12">YOUR ENERGY</text>
+          <polyline fill="none" stroke="#7fe0c8" stroke-width="3" stroke-linejoin="round"
+            points="40,170 120,185 170,200 190,90 215,95 240,190 330,205 380,212 400,100 425,105 450,205 540,215 590,222 610,115 635,120 660,215 780,228"/>
+          <g fill="#f2b866" font-family="ui-monospace, Menlo, monospace" font-size="12" text-anchor="middle">
+            <circle cx="190" cy="90" r="5"/><text x="190" y="76">vacation</text>
+            <circle cx="400" cy="100" r="5"/><text x="400" y="86">vacation</text>
+            <circle cx="610" cy="115" r="5"/><text x="610" y="101">vacation</text>
+          </g>
+          <text x="410" y="252" fill="#a3b8b4" font-family="ui-monospace, Menlo, monospace" font-size="12" text-anchor="middle">recharge · back to work · same low · a little lower each time</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Recognition -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">You know this</p>
+      <h2>The job works. You don't feel like yourself anymore.</h2>
+      <div class="grid3">
+        <div class="card"><span class="num">01</span>Sunday evening already feels heavy.</div>
+        <div class="card"><span class="num">02</span>Vacation used to fix it. Now it lasts about three days.</div>
+        <div class="card"><span class="num">03</span>You think a lot about life. You just don't really live it.</div>
+      </div>
+      <p class="quote">"I don't know who I am without my job."</p>
+      <p class="muted">If that sentence lands, you're not lazy and you're not broken. You're living the role you learned, not yourself. Carl Jung called it confusing yourself with your persona.</p>
+    </div>
+  </section>
+
+  <!-- 3. Story -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">I've been there</p>
+      <h2>I'm André, everyone calls me Tico.</h2>
+      <p>For almost eight years I worked in tech sales and Salesforce consulting, most recently as a Senior Sales Manager, building our office in Innsbruck. From the outside it looked like a great career. And it was.</p>
+      <p>And then, after years in corporate, my job was cut too. I had to reinvent myself. That's where I am now, and it's exactly why I'm building Life Work Flow.</p>
+      <p>I started working remotely in 2018, before COVID and before the nomad wave, and spent the years since between Munich, Cape Town, Europe and Latin America. I reinvented myself more than once: analyst and consultant, then sales leader, now speaker and creator. Not by quitting everything, but by bringing work and life into one flow.</p>
+      <p>That's what I help people do now. I'm the bridge between two worlds most people think don't fit together: corporate and tech on one side, psychology and consciousness on the other. Lived, not just learned.</p>
+    </div>
+  </section>
+
+  <!-- 4. The model -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Why it keeps breaking</p>
+      <h2>It isn't a time problem. It's a flow problem.</h2>
+      <p class="muted">Work-life balance treats work and life as opponents. So you trade one against the other, and both lose. Life Work Flow looks at six areas that either feed each other or drain each other. When one breaks, the others follow.</p>
+      <div class="pillars">
+        <div class="card"><span class="num">01 · BODY</span><b>Health, sport and lifestyle</b><br><span class="muted">The foundation everything else runs on.</span></div>
+        <div class="card"><span class="num">02 · WORK</span><b>Professional goals</b><br><span class="muted">Work that fits who you are now, not who you were at 25.</span></div>
+        <div class="card"><span class="num">03 · SELF</span><b>Personal goals</b><br><span class="muted">The things you keep postponing to "later".</span></div>
+        <div class="card"><span class="num">04 · PEOPLE</span><b>Family and friends</b><br><span class="muted">A circle where you feel understood.</span></div>
+        <div class="card"><span class="num">05 · GROWTH</span><b>Growth and learning</b><br><span class="muted">Including AI as a tool for more freedom, not more pressure.</span></div>
+        <div class="card"><span class="num">06 · MIND</span><b>Mindset</b><br><span class="muted">Trust, intuition and the energy you bring into your days.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Flow Check -->
+  <section id="check">
+    <div class="wrap">
+      <p class="eyebrow">Flow Check</p>
+      <h2>Where does your flow break?</h2>
+      <p class="muted">Rate each area from 1 (draining me) to 10 (feeding me). Nothing is stored or sent.</p>
+      <form class="check" id="flowcheck" oninput="updateCheck()">
+        <div class="row"><label for="p1">Health, sport and lifestyle</label><output id="o1">5</output><input type="range" id="p1" min="1" max="10" value="5"></div>
+        <div class="row"><label for="p2">Professional goals</label><output id="o2">5</output><input type="range" id="p2" min="1" max="10" value="5"></div>
+        <div class="row"><label for="p3">Personal goals</label><output id="o3">5</output><input type="range" id="p3" min="1" max="10" value="5"></div>
+        <div class="row"><label for="p4">Family and friends</label><output id="o4">5</output><input type="range" id="p4" min="1" max="10" value="5"></div>
+        <div class="row"><label for="p5">Growth and learning</label><output id="o5">5</output><input type="range" id="p5" min="1" max="10" value="5"></div>
+        <div class="row"><label for="p6">Mindset</label><output id="o6">5</output><input type="range" id="p6" min="1" max="10" value="5"></div>
+      </form>
+      <div class="result">
+        <div class="small">YOUR FLOW SCORE</div>
+        <div class="score"><span id="score">50</span><span class="muted" style="font-size:20px"> / 100</span></div>
+        <p id="advice" style="margin-top:12px">Move the sliders to see where your flow breaks first.</p>
+        <a class="btn primary" href="#call" style="max-width:360px;margin-top:12px">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Before / after -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What changes</p>
+      <h2>From autopilot back to being the author of your life.</h2>
+      <div class="shift">
+        <span class="from">Control</span><span class="arrow">→</span><span class="to">Curiosity</span>
+        <span class="from">Overthinking</span><span class="arrow">→</span><span class="to">Experiencing</span>
+        <span class="from">Autopilot</span><span class="arrow">→</span><span class="to">Awareness</span>
+        <span class="from">Waiting for certainty</span><span class="arrow">→</span><span class="to">Taking the first step</span>
+        <span class="from">Spectator</span><span class="arrow">→</span><span class="to">Author</span>
+      </div>
+      <p class="muted" style="margin-top:28px">Not a ten-step formula and not another optimization system. A decision you've postponed for too long, made, and a life where work runs with you instead of against you.</p>
+    </div>
+  </section>
+
+  <!-- 7. What you've tried -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What you've already tried</p>
+      <h2>Why the usual fixes don't stick</h2>
+      <div class="grid3">
+        <div class="card"><b>A vacation or sabbatical.</b><br><span class="muted">The scenery changes. You don't. Two weeks after you're back, everything feels like before.</span></div>
+        <div class="card"><b>Self-help books.</b><br><span class="muted">Good ideas, but they stay in your head. Rules without experience.</span></div>
+        <div class="card"><b>A new job.</b><br><span class="muted">New logo, same pattern. The autopilot comes along.</span></div>
+        <div class="card"><b>More apps and habits.</b><br><span class="muted">Productivity systems, meditation apps: even more optimizing, even less living.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. How it works -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How it starts</p>
+      <h2>One conversation. One decision. One step in 48 hours.</h2>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><div><b>A conversation</b><span class="muted">We look at your six areas and find where your flow breaks first.</span></div></div>
+        <div class="step"><span class="n">2</span><div><b>One decision you've been postponing</b><span class="muted">Not a five-year plan. The one thing that matters most right now.</span></div></div>
+        <div class="step"><span class="n">3</span><div><b>One concrete step within 48 hours</b><span class="muted">Because insight without action is just more thinking about life.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Objections -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What you might be thinking</p>
+      <h2>Fair questions</h2>
+      <details><summary>"I don't have time for this right now."</summary><p>That's usually the clearest sign. If there's no room for one honest conversation, the autopilot is already running the show. We start with what gives you energy back fastest.</p></details>
+      <details><summary>"I'm not into spiritual stuff."</summary><p>Neither is this, at least not the vague kind. It's grounded in psychology (Jung, archetypes, the hero's journey) and in a very practical question: what does your week actually look like?</p></details>
+      <details><summary>"Isn't this just coaching or therapy?"</summary><p>Therapy works on what's broken and on the past. Most coaching sells hustle and optimization. Life Work Flow is for people who have "nothing wrong" and still feel something missing, and it looks forward.</p></details>
+      <details><summary>"Why you?"</summary><p>Because I lived it inside a real career, not instead of one. Remote since 2018, sales leader, years across three continents, and more than one reinvention. I know both worlds, and I'll tell you honestly if I'm not the right person for you.</p></details>
+    </div>
+  </section>
+
+  <!-- 10. Final CTA -->
+  <section id="call" class="final">
+    <div class="wrap">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's find where your flow breaks.</h2>
+      <p class="muted">Tell me where you are right now, in a few lines. If I'm not the right person for you, I'll say so.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:hello@lifeworkflow.ai?subject=Life%20Work%20Flow">Write to hello@lifeworkflow.ai</a>
+      </div>
+      <p class="small">Your message goes only to me and is never shared.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <h3>Impressum</h3>
+      <p>André Diedrich<br>Sendlinger Straße 50<br>80331 München, Germany<br>E-mail: hello@lifeworkflow.ai</p>
+      <p>This website uses no cookies, no tracking and no external fonts.</p>
+    </div>
+  </footer>
+
+  <a class="floating" href="#call">Get in touch</a>
+
+  <script>
+    const names = ["Health, sport and lifestyle", "Professional goals", "Personal goals", "Family and friends", "Growth and learning", "Mindset"];
+    function updateCheck() {
+      let sum = 0, low = 0, lowVal = 11;
+      for (let i = 1; i <= 6; i++) {
+        const v = +document.getElementById("p" + i).value;
+        document.getElementById("o" + i).textContent = v;
+        sum += v;
+        if (v < lowVal) { lowVal = v; low = i - 1; }
+      }
+      const score = Math.round(sum / 60 * 100);
+      document.getElementById("score").textContent = score;
+      let msg;
+      if (score >= 75) msg = "You're mostly in flow. Your lowest area is " + names[low] + ". That's where your next step lies.";
+      else if (score >= 50) msg = "Parts of your life feed you, parts drain you. Your flow breaks first at " + names[low] + ".";
+      else msg = "You're running on reserve. Start with " + names[low] + ": when it moves, the others follow.";
+      document.getElementById("advice").textContent = msg;
+    }
+  </script>
+</body>
+</html>
