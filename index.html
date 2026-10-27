@@ -70,6 +70,12 @@
     summary { cursor: pointer; font-weight: 600; }
     details p { margin: 12px 0 0; color: var(--muted); }
     .final { text-align: left; }
+    .byline { display: flex; align-items: center; gap: 14px; margin-top: 24px; }
+    .byline img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; border: 2px solid var(--line); }
+    .story { display: grid; gap: 28px; grid-template-columns: 280px 1fr; align-items: start; }
+    .story img { width: 100%; border-radius: 16px; border: 1px solid var(--line); display: block; }
+    @media (max-width: 720px) { .story { grid-template-columns: 1fr; } .story img { max-width: 320px; } }
+    .badge { display: inline-block; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: var(--warm); border: 1px solid var(--warm); border-radius: 999px; padding: 2px 10px; margin-bottom: 14px; }
     footer { padding: 40px 0 64px; color: var(--muted); font-size: 14px; }
     footer h3 { color: var(--ink); font-size: 14px; margin: 0 0 6px; }
     .floating { position: fixed; right: 16px; bottom: 16px; background: var(--accent); color: #08201b; padding: 12px 18px; border-radius: 999px; font-weight: 600; text-decoration: none; box-shadow: 0 6px 24px rgba(0,0,0,.35); font-size: 15px; }
@@ -96,6 +102,10 @@
       </div>
       <p class="small">Six questions, two minutes, nothing is sent anywhere. You see your result right away.</p>
       <p class="for muted">For professionals in tech, consulting, sales and corporate, roughly early 30s to mid-40s, who are successful on paper and running on empty: functioning, but not really living.</p>
+      <div class="byline">
+        <img src="tico.jpg" alt="André Tico Diedrich">
+        <div><b>André "Tico" Diedrich</b><br><span class="small">Founder, Life Work Flow · Munich</span></div>
+      </div>
 
       <div class="chart" aria-label="Energy over a year: a vacation recharges you, then you crash back to the same low.">
         <svg viewBox="0 0 800 260" role="img">
@@ -135,10 +145,15 @@
     <div class="wrap">
       <p class="eyebrow">I've been there</p>
       <h2>I'm André, everyone calls me Tico.</h2>
+      <div class="story">
+      <img src="tico.jpg" alt="Portrait of André Tico Diedrich, founder of Life Work Flow">
+      <div>
       <p>For almost eight years I worked in tech sales and Salesforce consulting, most recently as a Senior Sales Manager, building our office in Innsbruck. From the outside it looked like a great career. And it was.</p>
       <p>And then, after years in corporate, my job was cut too. I had to reinvent myself. That's where I am now, and it's exactly why I'm building Life Work Flow.</p>
       <p>I started working remotely in 2018, before COVID and before the nomad wave, and spent the years since between Munich, Cape Town, Europe and Latin America. I reinvented myself more than once: analyst and consultant, then sales leader, now speaker and creator. Not by quitting everything, but by bringing work and life into one flow.</p>
       <p>That's what I help people do now. I'm the bridge between two worlds most people think don't fit together: corporate and tech on one side, psychology and consciousness on the other. Lived, not just learned.</p>
+      </div>
+      </div>
     </div>
   </section>
 
@@ -155,6 +170,22 @@
         <div class="card"><span class="num">04 · PEOPLE</span><b>Family and friends</b><br><span class="muted">A circle where you feel understood.</span></div>
         <div class="card"><span class="num">05 · GROWTH</span><b>Growth and learning</b><br><span class="muted">Including AI as a tool for more freedom, not more pressure.</span></div>
         <div class="card"><span class="num">06 · MIND</span><b>Mindset</b><br><span class="muted">Trust, intuition and the energy you bring into your days.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4b. AI product -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What we're building</p>
+      <span class="badge">IN DEVELOPMENT</span>
+      <h2>The AI Flow Companion</h2>
+      <p class="muted">AI can give you more freedom or more pressure. We're building the version that gives you freedom. The Flow Check below is the first piece. Next comes a personal AI companion that:</p>
+      <div class="grid3">
+        <div class="card"><span class="num">REFLECT</span>helps you notice where your energy goes, in a few minutes a day</div>
+        <div class="card"><span class="num">PLAN</span>plans your week around all six areas, not just your calendar</div>
+        <div class="card"><span class="num">ACT</span>turns one decision into one step within 48 hours, and follows up</div>
+        <div class="card"><span class="num">AUTOMATE</span>takes routine work off your plate with simple AI workflows</div>
       </div>
     </div>
   </section>
@@ -252,8 +283,9 @@
 
   <footer>
     <div class="wrap">
+      <p><b style="color:var(--ink)">© 2026 Life Work Flow</b> · <a href="https://www.linkedin.com/in/andrediedrich/" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:hello@lifeworkflow.ai">hello@lifeworkflow.ai</a></p>
       <h3>Impressum</h3>
-      <p>André Diedrich<br>Sendlinger Straße 50<br>80331 München, Germany<br>E-mail: hello@lifeworkflow.ai</p>
+      <p>Life Work Flow<br>André Diedrich<br>Sendlinger Straße 50<br>80331 München, Germany<br>E-mail: hello@lifeworkflow.ai</p>
       <p>This website uses no cookies, no tracking and no external fonts.</p>
     </div>
   </footer>
