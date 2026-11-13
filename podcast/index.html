@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rosa Lazić · Trust the Process Podcast</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Layout: Night & Gold, a single dark world. Starry navy sky, cream serif, one gold italic word per headline.
+   Narrow reading column; the episode frame and the learnings grid are the only wide moments. */
+:root {
+  --night: #0a1530;
+  --night-deep: #050b1c;
+  --panel: rgba(16, 30, 64, 0.62);
+  --cream: #f3ead8;
+  --muted: #a9b3c9;
+  --gold: #d9b26a;
+  --gold-deep: #a9864a;
+  --line: rgba(217, 178, 106, 0.26);
+  --display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--night-deep); }
+body {
+  margin: 0;
+  background: radial-gradient(120% 70% at 50% 0%, #13244d 0%, var(--night) 45%, var(--night-deep) 100%) fixed, var(--night-deep);
+  color: var(--cream);
+  font: 300 17px/1.65 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.wrap {
+  position: relative; z-index: 1;
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--gold); text-underline-offset: 3px; }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+em { font-style: italic; color: var(--gold); }
+
+.label {
+  font: 500 12px/1.4 var(--body);
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(30px, 4.4vw, 44px); line-height: 1.15; }
+h3 { font-size: 22px; line-height: 1.3; }
+p { margin: 0; }
+
+/* top bar */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 22px 0; }
+.mark { font-family: var(--display); letter-spacing: 0.22em; text-transform: uppercase; font-size: 14px; }
+.mark b { color: var(--gold); font-weight: 500; }
+.mark span { color: var(--muted); }
+.draft {
+  font: 400 12px/1.3 var(--body); letter-spacing: 0.08em; color: var(--muted);
+  border: 1px dashed var(--line); border-radius: 999px; padding: 6px 12px;
+}
+
+/* hero */
+.hero { display: grid; gap: 22px; text-align: center; justify-items: center; padding-block: 56px 36px; }
+.hero h1 { font-size: clamp(38px, 6.6vw, 72px); line-height: 1.06; max-width: 15ch; }
+.guest { font: 400 15px/1.5 var(--body); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.guest strong { color: var(--cream); font-weight: 500; }
+.meta { display: flex; gap: 10px 22px; flex-wrap: wrap; justify-content: center; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.meta span + span::before { content: "·"; margin-right: 22px; color: var(--gold-deep); }
+
+.frame {
+  margin-top: 14px; width: 100%; max-width: 100%;
+  border: 1px solid var(--line); border-radius: 18px; padding: 10px;
+  background: linear-gradient(180deg, rgba(217,178,106,0.10), rgba(217,178,106,0.02));
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,0.7), 0 0 60px -20px rgba(217,178,106,0.25);
+}
+.frame img { display: block; width: 100%; height: auto; border-radius: 10px; aspect-ratio: 1920 / 880; object-fit: cover; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font: 500 14px/1 var(--body); letter-spacing: 0.08em; text-decoration: none;
+  padding: 14px 20px; border-radius: 999px; border: 1px solid var(--line); color: var(--cream);
+  background: var(--panel); transition: border-color .2s, background .2s;
+}
+.btn:hover { border-color: var(--gold); }
+.btn.primary { background: var(--gold); color: var(--night-deep); border-color: var(--gold); }
+.btn.primary:hover { background: #e6c483; }
+.btn.soon { color: var(--muted); cursor: default; }
+.btn.soon:hover { border-color: var(--line); }
+.btn small { font: 400 11px/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-deep); }
+
+/* sections */
+section { padding-block: 64px; border-top: 1px solid var(--line); }
+.intro { display: grid; gap: 18px; max-width: 680px; margin: 0 auto; text-align: center; }
+.intro p { color: var(--cream); font-size: 19px; }
+.intro p.soft { color: var(--muted); font-size: 17px; }
+
+.head { display: grid; gap: 12px; margin-bottom: 36px; max-width: 640px; }
+
+.learn { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.card {
+  display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; min-width: 0;
+  padding: 26px 24px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel);
+  backdrop-filter: blur(3px);
+}
+.card .ts { font: 500 12px/1 var(--body); letter-spacing: 0.14em; color: var(--gold); font-variant-numeric: tabular-nums; }
+.card p { color: var(--muted); font-size: 16px; }
+.card blockquote {
+  margin: 0; padding-top: 14px; border-top: 1px solid var(--line);
+  font: italic 400 17px/1.5 var(--display); color: var(--cream);
+}
+
+.pull { text-align: center; display: grid; gap: 20px; justify-items: center; }
+.pull blockquote { margin: 0; font: italic 400 clamp(26px, 4vw, 40px)/1.3 var(--display); max-width: 24ch; text-wrap: balance; }
+.pull blockquote::before { content: "“"; display: block; font-size: 1.8em; line-height: .6; color: var(--gold); }
+.pull cite { font-style: normal; }
+
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: start; }
+.chapters { list-style: none; margin: 0; padding: 0; }
+.chapters li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.chapters time { font: 500 14px/1 var(--body); color: var(--gold); font-variant-numeric: tabular-nums; }
+.chapters span { font-family: var(--display); font-size: 18px; }
+
+.rosa { display: grid; gap: 20px; }
+.rosa img { width: 100%; max-width: 100%; aspect-ratio: 760 / 721; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
+.rosa p { color: var(--muted); }
+
+.book { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; align-items: center; }
+.book img { width: 100%; max-width: 100%; border-radius: 4px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 50px -10px rgba(217,178,106,.3); }
+.book .copy { display: grid; gap: 18px; }
+.book .copy p { color: var(--muted); }
+.book .actions { justify-content: flex-start; }
+.book blockquote { margin: 0; font: italic 400 20px/1.45 var(--display); color: var(--cream); border-left: 2px solid var(--gold); padding-left: 18px; }
+
+.eps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ep { padding: 22px 22px 24px; border-radius: 14px; border: 1px solid var(--line); display: grid; gap: 8px; min-width: 0; }
+.ep.now { background: var(--panel); border-color: var(--gold-deep); }
+.ep h3 { font-size: 21px; }
+.ep p { color: var(--muted); font-size: 15px; }
+.ep .state { font: 500 11px/1 var(--body); letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-deep); margin-top: 6px; }
+.ep.now .state { color: var(--gold); }
+
+footer { border-top: 1px solid var(--line); padding-block: 48px 64px; text-align: center; display: grid; gap: 14px; justify-items: center; color: var(--muted); font-size: 14px; }
+footer .closing { font: italic 400 22px/1.4 var(--display); color: var(--cream); max-width: 30ch; }
+
+@media (max-width: 880px) {
+  .learn, .eps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .two { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .book { grid-template-columns: 160px minmax(0, 1fr); gap: 28px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .learn, .eps { grid-template-columns: minmax(0, 1fr); }
+  .book { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .book img { max-width: 180px; }
+  .book .actions { justify-content: center; }
+  .book blockquote { text-align: left; }
+  .hero { padding-block: 40px 28px; }
+  section { padding-block: 48px; }
+  .frame { padding: 6px; border-radius: 14px; }
+  .meta span + span::before { margin-right: 10px; }
+  .meta { gap: 6px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark"><b>Trust the Process</b> <span>· Personal Transformation Stories</span></div>
+    <a class="draft" href="../" style="text-decoration:none">← Life Work Flow</a>
+  </header>
+
+  <div class="hero">
+    <div class="label">Episode 03 · The podcast</div>
+    <h1>How Rosa turned her pain into <em>wisdom</em></h1>
+    <div class="guest"><strong>Rosa Lazić</strong> · Soul Reiki Master · Bodyworker</div>
+    <div class="meta"><span>50 min</span><span>11 chapters</span><span>November 2026</span></div>
+
+    <figure class="frame" style="margin-inline:0">
+      <img src="assets/episode.jpg" alt="Tico and Rosa laughing on the video call, Rosa holding up the first copy of Trust the Process" width="1600" height="733">
+    </figure>
+
+    <div class="actions">
+      <span class="btn soon" aria-disabled="true">Watch on YouTube <small>soon</small></span>
+      <span class="btn soon" aria-disabled="true">Listen on Spotify <small>soon</small></span>
+      <a class="btn" href="https://www.instagram.com/trust.theprocess111/" target="_blank" rel="noopener">Follow @trust.theprocess111</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="intro">
+      <div class="label">About this episode</div>
+      <p>Rosa and I grew up in the same village in the Bavarian Alps. Years later we ran into each other again in Cape Town, as roommates in the same house. She was the first person outside my family to hold my book.</p>
+      <p class="soft">In this conversation she tells how she grew up as the stranger, why she stopped talking about what she felt, and how the hardest years of her life cracked her open. We talk about AfrikaBurn, about the night she danced the way she always wanted to, about what a Reiki master actually does, and about why a book can read differently every time you pick it up.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <div class="label">What you'll take away</div>
+      <h2>Six things Rosa <em>remembers</em></h2>
+    </div>
+    <div class="learn">
+      <article class="card">
+        <div class="ts">02:29 · Growing up</div>
+        <h3>Home is a feeling, not a place</h3>
+        <p>In Germany she was the foreigner. On holiday in Bosnia and Serbia she was the German. Home stopped being somewhere to find and became something to feel.</p>
+        <blockquote>“I always thought that home is a place. Now I know it's different.”</blockquote>
+      </article>
+      <article class="card">
+        <div class="ts">09:32 · Pain into wisdom</div>
+        <h3>The hard times crack you open</h3>
+        <p>There is no sunshine without shadow. Rosa doesn't hide from the worst years anymore. She sees them as what made her who she is today.</p>
+        <blockquote>“The harder the hit, the more it cracked me open, and the more my light is able to shine.”</blockquote>
+      </article>
+      <article class="card">
+        <div class="ts">11:41 · AfrikaBurn</div>
+        <h3>Let yourself be different in public</h3>
+        <p>At home she always danced differently. In public she danced like everyone else. In the desert she stopped switching herself off, and that was the turning point.</p>
+        <blockquote>“I allowed myself to dance the way I always wanted to dance publicly.”</blockquote>
+      </article>
+      <article class="card">
+        <div class="ts">22:22 · Pockets of wonder</div>
+        <h3>Feel it once, then find it again</h3>
+        <p>A week in the desert doesn't solve your life. But once you know how full presence feels, you can open small pockets of it in your everyday life and stretch them out.</p>
+        <blockquote>“It's easier to remember that state of mind in your daily life.”</blockquote>
+      </article>
+      <article class="card">
+        <div class="ts">23:46 · What Reiki does</div>
+        <h3>Your body heals when it feels safe</h3>
+        <p>Rosa explains Reiki without the mystery: the nervous system has a stress mode and a healing mode. Her work is to help you switch to the second one.</p>
+        <blockquote>“Your body is only able to heal when you're not in the fight or flight mode.”</blockquote>
+      </article>
+      <article class="card">
+        <div class="ts">43:37 · Resonance</div>
+        <h3>A book meets you where you are</h3>
+        <p>Fifteen years ago <i>The Power of Now</i> was hieroglyphs to her. Today she reads it once a year and finds something new each time. She expects the same from <i>Trust the Process</i>.</p>
+        <blockquote>“Each and every time I'm reading it, I resonate with something different in the book.”</blockquote>
+      </article>
+    </div>
+  </section>
+
+  <section class="pull">
+    <blockquote>Little girl, there's going to be some really, really tough times, but keep going. It's going to be worth it.</blockquote>
+    <div class="label"><cite>Rosa, to her younger self, at AfrikaBurn</cite></div>
+  </section>
+
+  <section>
+    <div class="two">
+      <div>
+        <div class="head" style="margin-bottom:20px">
+          <div class="label">Chapters</div>
+          <h2>Inside the <em>episode</em></h2>
+        </div>
+        <ol class="chapters">
+          <li><time>00:00</time><span>Meet Rosa Lazić, Soul Reiki Master</span></li>
+          <li><time>02:29</time><span>Growing up the stranger in Garmisch</span></li>
+          <li><time>09:32</time><span>Hard times, and pain into wisdom</span></li>
+          <li><time>11:41</time><span>AfrikaBurn and a Kundalini awakening</span></li>
+          <li><time>22:22</time><span>Intuition and pockets of wonder</span></li>
+          <li><time>23:46</time><span>What a Reiki master does</span></li>
+          <li><time>30:35</time><span>Reiki and my identity shift</span></li>
+          <li><time>37:58</time><span>The first copy of the book</span></li>
+          <li><time>39:41</time><span>What Rosa feels about the book</span></li>
+          <li><time>43:37</time><span><i>The Power of Now</i> and resonance</span></li>
+          <li><time>48:04</time><span>Not feeling alone</span></li>
+        </ol>
+      </div>
+      <div class="rosa">
+        <img src="assets/rosa-portrait.jpg" alt="Rosa Lazić laughing and holding the first copy of Trust the Process" width="760" height="721">
+        <div class="label">The guest</div>
+        <h2>Rosa <em>Lazić</em></h2>
+        <p>Soul Reiki Master and bodyworker. Born in Garmisch-Partenkirchen to Yugoslav parents, plant-based for more than thirteen years, living between Cape Town, Germany and the road. Right now she is building something new: a Reiki session that moves to music, her own flow state turned into healing.</p>
+        <p>“I don't consider myself as a guru. I consider myself as a person who just remembers of what we are capable of as human beings.”</p>
+        <div><a class="btn" href="https://www.instagram.com/rosa_lazic/" target="_blank" rel="noopener">Follow @rosa_lazic</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="book">
+      <img src="assets/book.jpg" alt="Cover of Trust the Process by André Diedrich" width="600" height="900">
+      <div class="copy">
+        <div class="label">The book behind the podcast</div>
+        <h2>The first copy went to <em>Rosa</em></h2>
+        <p><i>Trust the Process</i> is my story of leaving the safe path, following a calling to Cape Town, and learning to turn pain into wisdom. Out November 17, 2026 with Amplify Publishing.</p>
+        <blockquote>“They will read your book and they will see, okay, I'm not alone.” <span class="label" style="display:block;margin-top:8px">Rosa</span></blockquote>
+        <div class="actions">
+          <a class="btn primary" href="https://www.amazon.com/dp/B0HPL2P63Z" target="_blank" rel="noopener">Pre-order the Kindle edition</a>
+          <a class="btn" href="https://trust-the-process-kohl.vercel.app/" target="_blank" rel="noopener">Visit the book's homepage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <div class="label">The series</div>
+      <h2>More personal <em>transformation</em> stories</h2>
+      <p style="color:var(--muted)">Long conversations with the people who are part of the <i>Trust the Process</i> journey: endorsers, editors and friends from the road.</p>
+    </div>
+    <div class="eps">
+      <article class="ep">
+        <div class="label">Episode 01</div>
+        <h3>Amy White</h3>
+        <p>CEO of The White Editorial, former editor-in-chief of Mindvalley, on the books she compares <i>Trust the Process</i> to.</p>
+        <div class="state">Coming soon</div>
+      </article>
+      <article class="ep">
+        <div class="label">Episode 02</div>
+        <h3>Lis Kanzler</h3>
+        <p>Coach, author and founder of Deeply Nomad, on finding another way when everyone else walks the same highway.</p>
+        <div class="state">Coming soon</div>
+      </article>
+      <article class="ep now">
+        <div class="label">Episode 03</div>
+        <h3>Rosa Lazić</h3>
+        <p>Soul Reiki Master, on growing up the stranger and turning pain into wisdom.</p>
+        <div class="state">You're here</div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <p class="closing">“Love is the answer, no matter what the question is.”</p>
+    <div class="label">Rosa, closing the episode</div>
+    <p style="margin-top:18px">Trust the Process · Personal Transformation Stories · hosted by André “Tico” Diedrich</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var c = document.getElementById('sky'); if (!c) return;
+  var x = c.getContext('2d'), stars = [], seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  for (var i = 0; i < 260; i++) stars.push([rnd(), rnd(), rnd() * 1.1 + 0.25, rnd() * 0.55 + 0.2, rnd() < 0.12]);
+  function draw() {
+    var d = window.devicePixelRatio || 1, w = innerWidth, h = innerHeight;
+    c.width = w * d; c.height = h * d; x.setTransform(d, 0, 0, d, 0, 0); x.clearRect(0, 0, w, h);
+    stars.forEach(function (s) {
+      x.globalAlpha = s[3];
+      x.fillStyle = s[4] ? '#e8c98a' : '#f3ead8';
+      x.beginPath(); x.arc(s[0] * w, s[1] * h, s[2], 0, Math.PI * 2); x.fill();
+    });
+  }
+  draw(); addEventListener('resize', draw);
+})();
+</script>
+</body>
+</html>
